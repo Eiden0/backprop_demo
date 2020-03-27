@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import Adder from "./Components/Adder/adder";
 import Base from "./Components/base/base";
 
 ReactDOM.render(

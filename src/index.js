@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import adder from "./Components/Adder/adder";
 import Base from "./Components/base/base";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Base/>
+    {/*<Base/>*/}
+    <adder/>
   </React.StrictMode>,
   document.getElementById('root')
 );

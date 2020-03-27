@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import "./base.css"
+import Adder from "../Adder/adder";
 class Base extends Component{
 
    render() {
@@ -15,6 +16,7 @@ class Base extends Component{
                               </tr>
                         </table>
                    </div>
+                   <Adder/>
                </div>
        )
    }

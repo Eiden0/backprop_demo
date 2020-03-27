@@ -7,7 +7,7 @@ class Base extends Component{
                <div className="base_table">
                    <h2 className="header">New Linear Policy</h2>
                    <div className="table">
-                        <table style={{width : "70%"}}>
+                        <table style={{width : "60%"}}>
                             <tr>
                                 <th>Metric</th>
                                 <th>Condition</th>

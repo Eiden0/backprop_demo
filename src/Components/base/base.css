@@ -1,5 +1,9 @@
 .header{
     margin: 30px 30px 30px 30px;
+    letter-spacing: 1px;
+    font-size: 28px;
+    font-weight: 400;
+    color: mediumblue;
 
 }
 
@@ -14,5 +18,9 @@ table {
 }
 
 table, th, td {
-  border: 1px solid black;
+    color: blue;
+    font-weight: 500;
+    padding: 10px;
+    border: 1px solid black;
+
 }

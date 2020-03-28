@@ -16,13 +16,29 @@ const options = [
 
 class Adder extends Component{
 
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.OnClick = this.onClick.bind(this);
+    }
+
+    handleChange(e){
+        this.props.handleOptionChange(e.value);
+    }
+
+    onClick(option){
+        this.props.handleOnClickPlus(option);
+        console.log(option)
+    }
+
     render() {
+        const option = this.props.selectedOption;
         return(
             <span>
                 <div className="select">
-                    <Select options={options} className="select-outer-box"/>
+                    <Select options={options} className="select-outer-box" onChange={this.handleChange}/>
                 </div>
-                <div className="plus"><img src={logo} alt="plus"/></div>
+                <div className="plus"><img src={logo} alt="plus" onClick={() => {this.onClick(option)}}/></div>
             </span>
         )
     }

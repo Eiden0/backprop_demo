@@ -1,9 +1,29 @@
 import React, {Component} from 'react';
 import "./base.css"
 import Adder from "../Adder/adder";
-class Base extends Component{
+import Table from "../Table/table";
 
-   render() {
+class Base extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedOption : null,
+            plusOption : null
+        };
+        this.handleOptionChange = this.handleOptionChange.bind(this);
+        this.handleOnClickPlus = this.handleOnClickPlus.bind(this)
+    }
+
+    handleOptionChange(selectedOption){
+        this.setState({selectedOption});
+    }
+
+    handleOnClickPlus(option){
+        this.setState({plusOption : option},() => {console.log(this.state.plusOption)})
+    }
+
+    render() {
+       const selectedOption = this.state.selectedOption;
        return(
                <div className="base_table">
                    <h2 className="header">New Linear Policy</h2>
@@ -16,10 +36,13 @@ class Base extends Component{
                               </tr>
                         </table>
                    </div>
-                   <Adder/>
+                   <Table option={this.state.plusOption}/>
+                   <Adder selectedOption={selectedOption}
+                          handleOptionChange={this.handleOptionChange}
+                          handleOnClickPlus={this.handleOnClickPlus}
+                   />
                </div>
        )
    }
 }
-
 export default Base;

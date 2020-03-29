@@ -23,17 +23,20 @@ class Base extends Component{
     }
 
     render() {
+        console.log('render base');
        const selectedOption = this.state.selectedOption;
        return(
                <div className="base_table">
                    <h2 className="header">New Linear Policy</h2>
                    <div className="table">
                         <table style={{width : "60%"}}>
-                            <tr>
-                                <th>Metric</th>
-                                <th>Condition</th>
-                                <th>Value</th>
-                              </tr>
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Condition</th>
+                                    <th>Value</th>
+                                  </tr>
+                            </thead>
                         </table>
                    </div>
                    <Table option={this.state.plusOption}/>

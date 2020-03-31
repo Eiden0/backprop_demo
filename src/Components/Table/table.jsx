@@ -10,13 +10,13 @@ class Table extends Component {
 
     onConditionChange(metric, condition) {
         const temp_metric = this.props.tableRows.filter(x => x.metric === metric)[0];
-        if (condition.value != temp_metric.condition.value) {
+        if (condition.value !== temp_metric.condition.value) {
             this.props.onConditionChange(metric, condition);
         }
     }
 
-    onValueChange(metric, ev) {
-        this.props.onValueChange(metric, ev, ev.target.value);
+    onValueChange(metric, value) {
+        this.props.onValueChange(metric, value);
     }
 
     render() {
@@ -25,28 +25,28 @@ class Table extends Component {
             if (v.condition.value === '>') {
                 return (
                     <th>
-                        <ValueInput metric={v.metric} name="greaterThan" id=">" onValueChange={this.onValueChange.bind(this)} />
+                        <ValueInput metric={v.metric} name="greaterThan" id=">" min={null} max={null} onValueChange={this.onValueChange.bind(this)} />
                     </th>
                 )
             }
             else if (v.condition.value === '<') {
                 return (
                     <th>
-                        <ValueInput metric={v.metric} name="lessThan" id="<" onValueChange={this.onValueChange.bind(this)} />
+                        <ValueInput metric={v.metric} name="lessThan" id="<" min={null} max={null} onValueChange={this.onValueChange.bind(this)} />
                     </th>
                 )
             }
             else if (v.condition.value === '=') {
                 return (
                     <th>
-                        <ValueInput metric={v.metric} name="equalTo" id="=" onValueChange={this.onValueChange.bind(this)} />
+                        <ValueInput metric={v.metric} name="equalTo" id="=" min={null} max={null} onValueChange={this.onValueChange.bind(this)} />
                     </th>
                 )
             }
             else if (v.condition.value === '><') {
                 return (
                     <th>
-                        <ValueInput metric={v.metric} name="between" id="[]" onValueChange={this.onValueChange.bind(this)} />
+                        <ValueInput metric={v.metric} name="between" id="[]" min={v.value.min} max={v.value.max} onValueChange={this.onValueChange.bind(this)} />
                     </th>
                 )
             }

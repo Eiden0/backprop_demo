@@ -29,6 +29,7 @@ class Base extends Component {
         this.handleOnClickPlus = this.handleOnClickPlus.bind(this);
         this.handleOnConditionChange = this.handleOnConditionChange.bind(this);
         this.handleOnValueChange = this.handleOnValueChange.bind(this);
+        this.handleOnSaveClick = this.handleOnSaveClick.bind(this);
     }
 
     handleOnClickPlus(option) {
@@ -54,7 +55,7 @@ class Base extends Component {
         }), () => { console.log(this.state) });
     }
 
-    handleOnValueChange(metric, condition, value) {
+    handleOnValueChange(metric, value) {
         this.setState(previousState => ({
             tableRows: previousState.tableRows.map(x => {
                 if (x['metric'] === metric) {
@@ -64,6 +65,10 @@ class Base extends Component {
                 return x;
             })
         }), () => { console.log(this.state) });
+    }
+
+    handleOnSaveClick() {
+        console.log(this.state.tableRows);
     }
 
     render() {
@@ -78,6 +83,7 @@ class Base extends Component {
                     onValueChange={this.handleOnValueChange}
                 />
                 <Adder options={this.state.options} handleOnClickPlus={this.handleOnClickPlus} />
+                <button onClick={this.handleOnSaveClick}>Save this</button>
             </div>
         )
     }

@@ -42,14 +42,28 @@ class Base extends Component {
         }), () => { console.log(this.state) });
     }
 
-    handleOnConditionChange(key, condition) {
+    handleOnConditionChange(metric, condition) {
         this.setState(previousState => ({
-            tableRows: previousState.tableRows.map(x => x)
+            tableRows: previousState.tableRows.map(x => {
+                if (x['metric'] === metric) {
+                    x['condition'] = condition;
+                }
+                
+                return x;
+            })
         }), () => { console.log(this.state) });
     }
 
-    handleOnValueChange(key, value) {
-        
+    handleOnValueChange(metric, value) {
+        this.setState(previousState => ({
+            tableRows: previousState.tableRows.map(x => {
+                if (x['metric'] === metric) {
+                    x['value'] = value;
+                }
+                
+                return x;
+            })
+        }), () => { console.log(this.state) });
     }
 
     render() {

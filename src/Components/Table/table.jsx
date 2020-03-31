@@ -5,34 +5,34 @@ import './table.css'
 class Table extends Component {
     constructor(props) {
         super(props);
-        this.handleOnValueChange = this.handleOnValueChange.bind(this);
     }
 
-    onConditionChange(key, condition) {
-        console.log(condition);
-        console.log(key);
-        this.props.onConditionChange(key, condition);
+    onConditionChange(metric, condition) {
+        const temp_metric = this.props.tableRows.filter(x => x.metric === metric)[0];
+        if (condition.value != temp_metric.condition.value) {
+            this.props.onConditionChange(metric, condition);
+        }
     }
 
-    handleOnValueChange(key, value) {
-
+    onValueChange(metric, ev) {
+        this.props.onValueChange(metric, ev.target.value);
     }
 
     render() {
         console.log('render table 1');
-        const value = function (v) {
-            if (v.value === '>') {
+        const value = (v) => {
+            if (v.condition.value === '>') {
                 return (
-                    <th><input type="number" id=">" name="greaterThan" /></th>
+                    <th><input type="number" id=">" name="greaterThan" onChange={(ev) => { this.onValueChange(v.metric, ev) }}/></th>
                 )
             }
-            else if (v.value === '<') {
-                return (<th><input type="number" id="<" name="lessThan" /></th>)
+            else if (v.condition.value === '<') {
+                return (<th><input type="number" id="<" name="lessThan" onChange={(ev) => { this.onValueChange(v.metric, ev) }} /></th>)
             }
-            else if (v.value === '=') {
-                return (<th><input type="number" id="=" name="equalTo" /></th>)
+            else if (v.condition.value === '=') {
+                return (<th><input type="number" id="=" name="equalTo" onChange={(ev) => { this.onValueChange(v.metric, ev) }} /></th>)
             }
-            else if (v.value === '><') {
+            else if (v.condition.value === '><') {
                 return (
                     <th>
                         <label htmlFor="min">Minimum:</label>
@@ -53,10 +53,10 @@ class Table extends Component {
         this.props.tableRows.forEach((row) => {
             console.log(row);
             rows.push(
-                <tr key={row['metric']}>
-                    <th>{row['metric']}</th>
-                    <th><Select options={conditions} value={row['condition']} onChange={(condition) => { this.onConditionChange(row['metric'], condition) }} /></th>
-                    {value(row['condition'])}
+                <tr key={row.metric}>
+                    <th>{row.metric}</th>
+                    <th><Select options={conditions} value={row.condition} onChange={(condition) => { this.onConditionChange(row.metric, condition) }} /></th>
+                    {value(row)}
                 </tr>
             );
         });

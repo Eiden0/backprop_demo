@@ -54,7 +54,7 @@ class Base extends Component {
         }), () => { console.log(this.state) });
     }
 
-    handleOnValueChange(metric, value) {
+    handleOnValueChange(metric, condition, value) {
         this.setState(previousState => ({
             tableRows: previousState.tableRows.map(x => {
                 if (x['metric'] === metric) {

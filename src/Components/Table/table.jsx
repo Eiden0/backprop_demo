@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Select from 'react-select'
 import './table.css'
+import ValueInput from "../ValueInput/valueinput.jsx";
 
 class Table extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class Table extends Component {
     }
 
     onValueChange(metric, ev) {
-        this.props.onValueChange(metric, ev.target.value);
+        this.props.onValueChange(metric, ev, ev.target.value);
     }
 
     render() {
@@ -23,24 +24,29 @@ class Table extends Component {
         const value = (v) => {
             if (v.condition.value === '>') {
                 return (
-                    <th><input type="number" id=">" name="greaterThan" onChange={(ev) => { this.onValueChange(v.metric, ev) }}/></th>
+                    <th>
+                        <ValueInput metric={v.metric} name="greaterThan" id=">" onValueChange={this.onValueChange.bind(this)} />
+                    </th>
                 )
             }
             else if (v.condition.value === '<') {
-                return (<th><input type="number" id="<" name="lessThan" onChange={(ev) => { this.onValueChange(v.metric, ev) }} /></th>)
+                return (
+                    <th>
+                        <ValueInput metric={v.metric} name="lessThan" id="<" onValueChange={this.onValueChange.bind(this)} />
+                    </th>
+                )
             }
             else if (v.condition.value === '=') {
-                return (<th><input type="number" id="=" name="equalTo" onChange={(ev) => { this.onValueChange(v.metric, ev) }} /></th>)
+                return (
+                    <th>
+                        <ValueInput metric={v.metric} name="equalTo" id="=" onValueChange={this.onValueChange.bind(this)} />
+                    </th>
+                )
             }
             else if (v.condition.value === '><') {
                 return (
                     <th>
-                        <label htmlFor="min">Minimum:</label>
-                        <input type="number" id="min" name="min" />
-                        <span>
-                            <label htmlFor="max">Maximum:</label>
-                            <input type="number" id="max" name="max" />
-                        </span>
+                        <ValueInput metric={v.metric} name="between" id="[]" onValueChange={this.onValueChange.bind(this)} />
                     </th>
                 )
             }
